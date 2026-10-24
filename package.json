@@ -1,0 +1,35 @@
+{
+  "name": "nexus-ai",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 3000",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview --host 0.0.0.0 --port 3000",
+    "start": "node --env-file=.env server.mjs",
+    "eval:generate": "node --env-file=.env eval/generate-dataset.mjs --n 30",
+    "eval:run": "node --env-file=.env eval/run-eval.mjs",
+    "eval:judge": "node --env-file=.env eval/run-eval.mjs --judge --limit 15",
+    "eval:test": "node --test eval/metrics.test.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.5.0",
+    "busboy": "^1.6.0",
+    "lucide-react": "^0.468.0",
+    "mysql2": "^3.24.5",
+    "pdf-parse": "^2.4.5",
+    "pg": "^8.23.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7"
+  }
+}

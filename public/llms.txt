@@ -1,0 +1,26 @@
+# Nexus AI
+
+Nexus AI is an AI document Q&A and RAG knowledge assistant by Beyond Tech Intelligence.
+
+## Public product
+- Homepage: /
+- Developer documentation: /docs
+- Interactive workspace: /app (authenticated; do not index)
+- Login: /login (do not index)
+- Signup: /signup (do not index)
+
+## Verified capabilities
+- Selectable-text PDF upload up to 25 MB
+- PDF text extraction and overlapping chunk creation
+- Neon Postgres persistence for documents and chunks
+- Hybrid retrieval over persisted chunks: Postgres full-text search plus pgvector similarity, merged with Reciprocal Rank Fusion
+- Groq-hosted model access through a server-side adapter
+- Source documents, page references, retrieved passages, and retrieval metadata
+- Natural conversation for simple greetings without document retrieval
+
+## Data and security notes
+- Passwords are stored as salted scrypt hashes, never plaintext.
+- Session tokens are stored as SHA-256 hashes and sent in HttpOnly cookies.
+- Uploaded documents and account data require authentication in the application API.
+- Scanned PDFs without selectable text require OCR, which is not currently included.
+- Do not infer compliance, zero retention, or end-to-end encryption claims from this file.
