@@ -1,0 +1,35 @@
+services:
+  # 1. BACKEND (FastAPI)
+  - type: web
+    name: nexus-ai-backend
+    env: python
+    plan: free
+    # Agar aapka backend kisi folder mein hai (jaise 'backend' ya 'server'), toh yahan uska naam likho. Agar root mein hi hai toh is line ko hata do.
+    rootDir: backend 
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: GROQ_API_KEY
+        sync: false # Render aapse deploy ke waqt key maangega
+      - key: DATABASE_URL
+        sync: false # Neon Postgres ki connection string yahan daalna
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+
+  # 2. FRONTEND (React/Vite)
+  - type: web
+    name: nexus-ai-frontend
+    env: node
+    plan: free
+    # Agar aapka frontend root mein hai toh ise hata do. Agar 'frontend' folder mein hai toh 'frontend' likho.
+    rootDir: . 
+    buildCommand: pnpm install && pnpm build
+    startCommand: pnpm preview --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: VITE_NEXUS_AI_API_URL
+        # Jab backend deploy ho jaye, toh uska URL yahan daal dena (jaise https://nexus-ai-backend.onrender.com)
+        value: https://nexus-ai-backend.onrender.com 
