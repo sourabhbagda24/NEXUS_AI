@@ -5,7 +5,7 @@ services:
     env: python
     plan: free
     # Agar aapka backend kisi folder mein hai (jaise 'backend' ya 'server'), toh yahan uska naam likho. Agar root mein hi hai toh is line ko hata do.
-    rootDir: backend 
+
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
