@@ -15,10 +15,7 @@ services:
         sync: false # Render aapse deploy ke waqt key maangega
       - key: DATABASE_URL
         sync: false # Neon Postgres ki connection string yahan daalna
-      - key: AWS_ACCESS_KEY_ID
-        sync: false
-      - key: AWS_SECRET_ACCESS_KEY
-        sync: false
+    
 
   # 2. FRONTEND (React/Vite)
   - type: web
